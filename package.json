@@ -10,7 +10,7 @@
   "author": "Viraj Patel",
   "license": "ISC",
   "bin": {
-    "hello": "./bin/index.js"
+    "pulse": "./bin/index.js"
   },
   "dependencies": {
     "@hapi/hapi": "~21.3.2",
