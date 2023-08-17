@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
-const yargs = require("yargs/yargs");
+const yargs = require("yargs");
 const axios = require("axios");
 const chalk = require("chalk");
+const startIntro = require("../templates/intro");
 
-const options = yargs
+startIntro()
+
+/*const options = yargs
     .usage("Usage: -n <name>")
     .option("n", { alias: "name", describe: "Your name", type: "string", demandOption: true })
     .argv;
@@ -12,9 +15,9 @@ const options = yargs
 const settingsOptions = yargs
     .usage()
     .option()
-    .argv;
+    .argv;*/
 
-/*const blah = yargs
+const blah = yargs
     .command('hello', 'print hello world', () => {
         console.log('Hello, world!');
     })
@@ -27,9 +30,9 @@ const settingsOptions = yargs
     }, (argv) => {
         console.log(`Hello, ${argv.name}!`);
     })
-    .argv;*/
+    .argv;
 
-const greeting = `Hello, ${options.name}!`;
+const greeting = `Hello, ${blah.name}!`;
 
 console.log(chalk.dim(greeting));
 console.log(chalk.red("Here's a random joke for you:"));
