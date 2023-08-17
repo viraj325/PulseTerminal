@@ -2,6 +2,7 @@
 
 const yargs = require("yargs");
 const axios = require("axios");
+const chalk = require("chalk");
 
 const options = yargs
     .usage("Usage: -n <name>")
@@ -9,9 +10,9 @@ const options = yargs
     .argv;
 
 const greeting = `Hello, ${options.name}!`;
-console.log(greeting);
 
-console.log("Here's a random joke for you:");
+console.log(chalk.dim(greeting));
+console.log(chalk.red("Here's a random joke for you:"));
 
 const url = "https://icanhazdadjoke.com/";
 axios.get(url, { headers: { Accept: "application/json" } }).then(res => {
