@@ -5,8 +5,10 @@ const axios = require("axios")
 const chalk = require("chalk")
 const startIntro = require("../templates/intro")
 const getStockPrice = require("../templates/stock")
+const { getCurrentDateTime } = require("../templates/weather_date_time")
 
 startIntro()
+getCurrentDateTime()
 
 yargs.command({
     command: 'stock',
