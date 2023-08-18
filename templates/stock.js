@@ -7,7 +7,7 @@ async function getStockPriceFromYahooFinance() {
     return quote.price.currency
 }
 
-function getStockPrice() {
+function getStockPrice(listOfSymbols) {
     /*
     {
     "Global Quote": {
@@ -24,10 +24,12 @@ function getStockPrice() {
     }
 }
      */
-    let url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=QAJ6DWWS4KMBG9CQ"
-    axios.get(url, { headers: { Accept: "application/json" } }).then(res => {
-        console.log(chalk.dim(`Stock Price: `) + chalk.bgGray(res.data["Global Quote"]["05. price"]))
-    })
+    for (const symbol of listOfSymbols) {
+        let url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=QAJ6DWWS4KMBG9CQ"
+        axios.get(url, {headers: {Accept: "application/json"}}).then(res => {
+            console.log(chalk.dim(symbol + `: `) + chalk.bgGray(res.data["Global Quote"]["05. price"]))
+        })
+    }
 }
 
 module.exports = getStockPrice

@@ -21,28 +21,21 @@ const settingsOptions = yargs
 const blah = yargs
     .command('stock', 'print hello world', () => {
         //console.log(`Stock Price: ` + getStockPrice());
-        getStockPrice()
+        getStockPrice(["AAPL", "IBM", "META", "GOOG", "GOOGL"])
     })
     .command('greet', 'greet someone', (yargs) => {
         yargs.option('name', {
             describe: 'name of the person to greet',
             demandOption: true,
             type: 'string'
-        });
+        })
     }, (argv) => {
         console.log(`Hello, ${argv.name}!`);
     })
     .argv;
 
 const greeting = `Hello, ${blah.name}!`;
-
 console.log(chalk.dim(greeting));
-console.log(chalk.red("Here's a random joke for you:"));
-
-const url = "https://icanhazdadjoke.com/";
-axios.get(url, { headers: { Accept: "application/json" } }).then(res => {
-    console.log(res.data.joke);
-});
 
 /*const chalk = require("chalk");
 const boxen = require("boxen");
