@@ -3,15 +3,9 @@ function getCurrentWeather() {
 }
 
 function getCurrentDateTime() {
-    let ts = Date.now()
-    let date_ob = new Date(ts)
-    let day = date_ob.getDay()
-    let month = date_ob.getMonth()
-    let year = date_ob.getFullYear()
-
-    // prints date & time in YYYY-MM-DD format
-    console.log("Current Date:" + year + "-" + month + "-" + day)
-    console.log("Current Time:" + date_ob.getHours() + ":" + date_ob.getMinutes() + ":" + date_ob.getSeconds)
+    let date = new Date(Date.now())
+    console.log("\nDate: " + date.toLocaleString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric'})
+     + " - Time: " + date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
 }
 
 module.exports = { getCurrentDateTime, getCurrentWeather }
