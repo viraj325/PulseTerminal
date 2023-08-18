@@ -4,6 +4,7 @@ const yargs = require("yargs");
 const axios = require("axios");
 const chalk = require("chalk");
 const startIntro = require("../templates/intro");
+const getStockPrice = require("../templates/stock");
 
 startIntro()
 
@@ -18,8 +19,9 @@ const settingsOptions = yargs
     .argv;*/
 
 const blah = yargs
-    .command('hello', 'print hello world', () => {
-        console.log('Hello, world!');
+    .command('stock', 'print hello world', () => {
+        //console.log(`Stock Price: ` + getStockPrice());
+        getStockPrice()
     })
     .command('greet', 'greet someone', (yargs) => {
         yargs.option('name', {
