@@ -22,11 +22,10 @@ yargs.command('stocks-setup', '', (yargs) => {
 
 // *************************************************************************************************************************************
 
-yargs.command('stocks-review', '', ()=> {
+yargs.command('stocks-r', '', ()=> {
     returnSavedListOfStocks()
 })
-
-yargs.command('stocks-delete', '', () => {
+.command('stocks-delete', '', () => {
     removeStockData()
 })
 
@@ -73,4 +72,4 @@ yargs.command({
     }
 })
 
-yargs.parse()
+//yargs.parse() removes the duplication of logging, if required chain it to the end of the command required
