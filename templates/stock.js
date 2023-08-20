@@ -1,6 +1,7 @@
 const axios = require("axios");
 const chalk = require("chalk");
 const yahooFinance = require('yahoo-finance2').default;
+const fs = require('fs');
 
 async function getStockPriceFromYahooFinance() {
     const quote = await yahooFinance.quoteSummary('AAPL')
@@ -32,4 +33,25 @@ function getStockPrice(listOfSymbols) {
     }
 }
 
-module.exports = getStockPrice
+function saveListOfStocks(tickers) {
+    let listOfSymbols = str.split(",")
+    var json_symbols_list = {}
+    var counter = 0
+
+    for (const symbol of listOfSymbols) {
+        json_symbols_list[counter] = symbol
+        counter++
+    }
+
+    let data = JSON.stringify(json_symbols_list)
+    fs.writeFileSync('pulse-stocks.json', data)
+}
+
+function returnSavedListOfStocks() {
+    let rawdata = fs.readFileSync('pulse-stocks.json')
+    let json_symbols_list= JSON.parse(rawdata)
+    console.log(json_symbols_list)
+    return json_symbols_list
+}
+
+module.exports = { getStockPrice, saveListOfStocks, returnSavedListOfStocks }

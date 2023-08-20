@@ -4,12 +4,32 @@ const yargs = require("yargs")
 const axios = require("axios")
 const chalk = require("chalk")
 const startIntro = require("../templates/intro")
-const getStockPrice = require("../templates/stock")
+const { getStockPrice, returnSavedListOfStocks, saveListOfStocks } = require("../templates/stock")
 const { getCurrentDateTime } = require("../templates/weather_date_time")
+
+// *************************************************************************************************************************************
+
+yargs.command('stocks-setup', '', (yargs) => {
+    yargs.option('tickers', {
+        describe: 'List of stock ticker symbol seperated by ,',
+        demandOption: true,
+        type: 'string'
+    })
+}, (argv) => {
+    saveListOfStocks(argv.tickers)
+    console.log("List of stocks have been saved, if any of the ticker symbols are entered incorrectly then reset using the same command.")
+})
+
+// *************************************************************************************************************************************
+
+yargs.command('stocks-r', '', ()=> {
+    returnSavedListOfStocks()
+})
 
 yargs.command('u', 'Get Updated Daily Feed', () => {
     startIntro()
     getCurrentDateTime()
+    getStockPrice(["AAPL", "IBM", "META", "GOOG", "GOOGL"])
 })
 .command('stock', 'print hello world', () => {
     //console.log(`Stock Price: ` + getStockPrice())
