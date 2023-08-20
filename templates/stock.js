@@ -1,5 +1,6 @@
 const axios = require("axios");
 const chalk = require("chalk");
+const { randomUUID } = require("crypto");
 const yahooFinance = require('yahoo-finance2').default;
 const fs = require('fs');
 
@@ -50,9 +51,7 @@ function saveListOfStocks(tickers) {
 
 function addStock(ticker) {
     let json_symbols_list = returnSavedListOfStocks()
-    let size = json_symbols_list.length == 0 ? 0 : json_symbols_list.length
-    json_symbols_list['id'] = size++
-    json_symbols_list['ticker'] = ticker
+    json_symbols_list[randomUUID()] = ticker
     let data = JSON.stringify(json_symbols_list)
     fs.writeFileSync('pulse-stocks.json', data)
 }
