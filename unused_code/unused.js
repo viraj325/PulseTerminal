@@ -1,3 +1,4 @@
+// *************************************************************************************************************************************
 
 /*const options = yargs
     .usage("Usage: -n <name>")
@@ -9,7 +10,7 @@ const settingsOptions = yargs
     .option()
     .argv;*/
 
-
+// *************************************************************************************************************************************
     
 /*const chalk = require("chalk");
 const boxen = require("boxen");
@@ -25,6 +26,8 @@ const boxenOptions = {
 
 const msgBox = boxen(greeting, boxenOptions);
 console.log(msgBox);*/
+
+// *************************************************************************************************************************************
 
 /*
 // Create add command
@@ -53,3 +56,24 @@ yargs.command({
 
 yargs.parse() // To set above changes
  */
+
+// *************************************************************************************************************************************
+
+/*const blah = yargs
+    .command('stock', 'print hello world', () => {
+        //console.log(`Stock Price: ` + getStockPrice())
+        getStockPrice(["AAPL", "IBM", "META", "GOOG", "GOOGL"])
+    })
+    .command('greet', 'greet someone', (yargs) => {
+        yargs.option('name', {
+            describe: 'name of the person to greet',
+            demandOption: true,
+            type: 'string'
+        })
+    }, (argv) => {
+        console.log(`Hello, ${argv.name}!`)
+    })
+    .argv
+
+const greeting = `Hello, ${blah.name}!`
+console.log(chalk.dim(greeting))*/
