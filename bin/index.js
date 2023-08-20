@@ -4,7 +4,7 @@ const yargs = require("yargs")
 const axios = require("axios")
 const chalk = require("chalk")
 const startIntro = require("../templates/intro")
-const { getStockPrice, returnSavedListOfStocks, saveListOfStocks } = require("../templates/stock")
+const { getStockPrice, returnSavedListOfStocks, saveListOfStocks, removeStockData } = require("../templates/stock")
 const { getCurrentDateTime } = require("../templates/weather_date_time")
 
 // *************************************************************************************************************************************
@@ -22,8 +22,12 @@ yargs.command('stocks-setup', '', (yargs) => {
 
 // *************************************************************************************************************************************
 
-yargs.command('stocks-r', '', ()=> {
+yargs.command('stocks-review', '', ()=> {
     returnSavedListOfStocks()
+})
+
+yargs.command('stocks-delete', '', () => {
+    removeStockData()
 })
 
 yargs.command('u', 'Get Updated Daily Feed', () => {

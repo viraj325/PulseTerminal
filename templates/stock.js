@@ -34,7 +34,7 @@ function getStockPrice(listOfSymbols) {
 }
 
 function saveListOfStocks(tickers) {
-    let listOfSymbols = str.split(",")
+    let listOfSymbols = tickers.split(",")
     var json_symbols_list = {}
     var counter = 0
 
@@ -54,4 +54,10 @@ function returnSavedListOfStocks() {
     return json_symbols_list
 }
 
-module.exports = { getStockPrice, saveListOfStocks, returnSavedListOfStocks }
+function removeStockData() {
+    fs.truncate('pulse-stocks.json', 0, () => {
+        console.log("Stock Info has been removed.")
+    })
+}
+
+module.exports = { getStockPrice, saveListOfStocks, returnSavedListOfStocks, removeStockData }
