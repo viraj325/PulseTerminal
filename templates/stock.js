@@ -34,7 +34,8 @@ function getStockPrice(listOfSymbols) {
 }
 
 function saveListOfStocks(tickers) {
-    let listOfSymbols = tickers.split(",")
+    let listOfSymbols = tickers.split(" ")
+    console.log(listOfSymbols)
     var json_symbols_list = {}
     var counter = 0
 
@@ -47,7 +48,21 @@ function saveListOfStocks(tickers) {
     fs.writeFileSync('pulse-stocks.json', data)
 }
 
+function addStock(ticker) {
+    let json_symbols_list = returnSavedListOfStocks()
+    let size = json_symbols_list.length == 0 ? 0 : json_symbols_list.length
+    json_symbols_list['id'] = size++
+    json_symbols_list['ticker'] = ticker
+    let data = JSON.stringify(json_symbols_list)
+    fs.writeFileSync('pulse-stocks.json', data)
+}
+
 function returnSavedListOfStocks() {
+    if (!fs.existsSync('pulse-stocks.json')) {
+        console.log("File not found...")
+        return {}
+    }
+    
     let rawdata = fs.readFileSync('pulse-stocks.json')
     let json_symbols_list= JSON.parse(rawdata)
     console.log(json_symbols_list)
@@ -60,4 +75,4 @@ function removeStockData() {
     })
 }
 
-module.exports = { getStockPrice, saveListOfStocks, returnSavedListOfStocks, removeStockData }
+module.exports = { getStockPrice, saveListOfStocks, returnSavedListOfStocks, removeStockData, addStock }

@@ -4,28 +4,28 @@ const yargs = require("yargs")
 const axios = require("axios")
 const chalk = require("chalk")
 const startIntro = require("../templates/intro")
-const { getStockPrice, returnSavedListOfStocks, saveListOfStocks, removeStockData } = require("../templates/stock")
+const { getStockPrice, returnSavedListOfStocks, saveListOfStocks, removeStockData, addStock } = require("../templates/stock")
 const { getCurrentDateTime } = require("../templates/weather_date_time")
 
 // *************************************************************************************************************************************
 
-yargs.command('stocks-setup', '', (yargs) => {
-    yargs.option('tickers', {
-        describe: 'List of stock ticker symbol seperated by ,',
+yargs.command('stocks', '', (yargs) => {
+    yargs.option('a', {
+        describe: 'Add Ticker Symbol to the current list of saved stocks',
         demandOption: true,
         type: 'string'
     })
 }, (argv) => {
-    saveListOfStocks(argv.tickers)
-    console.log("List of stocks have been saved, if any of the ticker symbols are entered incorrectly then reset using the same command.")
+    addStock(argv.a)
+    //console.log("List of stocks have been saved, if any of the ticker symbols are entered incorrectly then reset using the same command.")
 })
 
 // *************************************************************************************************************************************
 
-yargs.command('stocks-r', '', ()=> {
+yargs.command('stocks-r', 'Review the saved list of stocks', ()=> {
     returnSavedListOfStocks()
 })
-.command('stocks-delete', '', () => {
+.command('stocks-d', 'Delete all of the stock related data.', () => {
     removeStockData()
 })
 
