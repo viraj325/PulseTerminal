@@ -51,9 +51,17 @@ function saveListOfStocks(tickers) {
 
 function addStock(ticker) {
     let json_symbols_list = returnSavedListOfStocks()
-    json_symbols_list[randomUUID()] = ticker
-    let data = JSON.stringify(json_symbols_list)
-    fs.writeFileSync('pulse-stocks.json', data)
+    if ("stocks" in json_symbols_list) {
+        json_symbols_list.stocks[randomUUID()] = ticker
+        let data = JSON.stringify(json_symbols_list)
+        fs.writeFileSync('pulse-stocks.json', data)
+    } else {
+        let json_main_list = {}
+        json_symbols_list[randomUUID()] = ticker
+        json_main_list["stocks"] = json_symbols_list
+        let data = JSON.stringify(json_main_list)
+        fs.writeFileSync('pulse-stocks.json', data)
+    }
 }
 
 function returnSavedListOfStocks() {
