@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 
+const { getStockPrice, returnSavedListOfStocks, removeStockData, addStock } = require("../templates/stock")
+const { getCurrentDateTime } = require("../templates/weather_date_time")
+const startIntro = require("../templates/intro")
+const getSources = require("../templates/news")
 const yargs = require("yargs")
 const axios = require("axios")
 const chalk = require("chalk")
-const startIntro = require("../templates/intro")
-const { getStockPrice, returnSavedListOfStocks, saveListOfStocks, removeStockData, addStock } = require("../templates/stock")
-const { getCurrentDateTime } = require("../templates/weather_date_time")
 
 // *************************************************************************************************************************************
 
-yargs.command('stocks', '', (yargs) => {
+yargs.command('stocks', 'Stock related command', (yargs) => {
     yargs.option('a', {
         describe: 'Add Ticker Symbol to the current list of saved stocks',
         demandOption: true,
@@ -21,6 +22,9 @@ yargs.command('stocks', '', (yargs) => {
 })
 
 // *************************************************************************************************************************************
+yargs.command('news', '', () => {
+    getSources()
+})
 
 yargs.command('stocks-r', 'Review the saved list of stocks', ()=> {
     returnSavedListOfStocks()
