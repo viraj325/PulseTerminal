@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { getStockPrice, returnSavedListOfStocks, removeStockData, addStock } = require("../templates/stock")
-const { getCurrentDateTime } = require("../templates/weather_date_time")
+const { getCurrentDateTime, getCurrentWeather } = require("../templates/weather_date_time")
 const startIntro = require("../templates/intro")
 const getSources = require("../templates/news")
 const yargs = require("yargs")
@@ -22,6 +22,10 @@ yargs.command('stocks', 'Stock related command', (yargs) => {
 })
 
 // *************************************************************************************************************************************
+yargs.command('daily', '', () => {
+    getCurrentWeather()
+})
+
 yargs.command('news', '', () => {
     getSources()
 })
