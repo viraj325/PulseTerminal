@@ -1,1 +1,9 @@
-{"stocks":{"32030796-a6f0-416f-a5d7-b8786e6edd2c":"GOOG","d4206056-fe7a-45ea-ad7e-81f976753eea":"APPL"}}
+{
+    "stocks": {
+        "75a4f129-3f6f-4f60-92ad-cc260b61d407": "APPL",
+        "c627804f-972c-475b-9706-baf4a096a0eb": "GOOG",
+        "8ed88832-b401-4965-974a-889f6e94242b": "IBM",
+        "59a16eae-e608-4e22-a1c4-3875fe944489": "META",
+        "6d7d023a-d2a2-4627-a8f2-9fdafedd933f": "O"
+    }
+}
