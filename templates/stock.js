@@ -10,6 +10,7 @@ async function getStockPriceFromYahooFinance() {
 }
 
 function getStockPrice(listOfSymbols) {
+    console.log('\n***************STOCKS**************')
     /*
     {
     "Global Quote": {

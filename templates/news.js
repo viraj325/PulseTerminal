@@ -29,6 +29,7 @@ function getEverything() {
 }
 
 function getSources() {
+    console.log('\n***************NEWS**************')
     newsapi.v2.sources({
         category: 'technology',
         language: 'en',

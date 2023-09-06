@@ -23,7 +23,11 @@ yargs.command('stocks', 'Stock related command', (yargs) => {
 
 // *************************************************************************************************************************************
 yargs.command('daily', '', () => {
+    startIntro()
     getCurrentWeather()
+    getCurrentDateTime()
+    getStockPrice(["AAPL", "IBM", "META", "GOOG", "GOOGL"])
+    getSources()
 })
 
 yargs.command('news', '', () => {
