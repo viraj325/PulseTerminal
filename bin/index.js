@@ -24,9 +24,14 @@ yargs.command('stocks', 'Stock related command', (yargs) => {
 // *************************************************************************************************************************************
 yargs.command('daily', '', () => {
     startIntro().then(async r => {
-        await getStockPrice(["AAPL", "IBM", "META", "GOOG", "GOOGL"])
+        await getStockPrice(["AAPL", "IBM", "META", "GOOG", "GOOGL"], (priceMap) => {
+            console.log("priceMap: " + priceMap)
+            priceMap.forEach((values, keys) => {
+                console.log(chalk.dim(keys + `: `) + chalk.bgGray(values))
+            })
+        })
     }).then(() => {
-        getSources()
+        //getSources()
     })
 })
 

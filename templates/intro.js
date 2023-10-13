@@ -1,4 +1,5 @@
 const {getCurrentWeather, getCurrentDateTime} = require("./weather_date_time");
+const chalk = require("chalk");
 
 function randomGreeting() {
     let greetingsList = [
@@ -11,11 +12,14 @@ function randomGreeting() {
 }
 
 const startIntro = async () => {
-    console.log("-----------------------------------------------------------------------------------------")
-    console.log("\n" + randomGreeting())
-    await getCurrentWeather()
-    getCurrentDateTime()
-    console.log("\n-----------------------------------------------------------------------------------------")
+    await getCurrentWeather((res) => {
+        console.log("-----------------------------------------------------------------------------------------")
+        console.log("|\n|   " + randomGreeting())
+        console.log("|")
+        console.log("|  " + chalk.dim(`🌡 Current Weather: ☀`) + chalk.bgGray(res.data["current_weather"]["temperature"]))
+        getCurrentDateTime()
+        console.log("|\n-----------------------------------------------------------------------------------------")
+    })
 }
 
 module.exports = startIntro

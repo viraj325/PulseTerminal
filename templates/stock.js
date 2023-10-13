@@ -9,8 +9,10 @@ async function getStockPriceFromYahooFinance() {
     return quote.price.currency
 }
 
-function getStockPrice(listOfSymbols) {
+function getStockPrice(listOfSymbols, callback) {
     console.log('\n***************STOCKS**************')
+    const quotePriceList = new Map()
+    // TODO try string list
     /*
     {
     "Global Quote": {
@@ -30,9 +32,13 @@ function getStockPrice(listOfSymbols) {
     for (const symbol of listOfSymbols) {
         let url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=QAJ6DWWS4KMBG9CQ"
         axios.get(url, {headers: {Accept: "application/json"}}).then(res => {
-            console.log(chalk.dim(symbol + `: `) + chalk.bgGray(res.data["Global Quote"]["05. price"]))
+            // console.log(chalk.dim(symbol + `: `) + chalk.bgGray(res.data["Global Quote"]["05. price"]))
+            // console.log(res.data["Global Quote"]["05. price"])
+            quotePriceList.set(symbol, res.data["Global Quote"]["05. price"])
         })
     }
+
+    callback(quotePriceList)
 }
 
 function saveListOfStocks(tickers) {
