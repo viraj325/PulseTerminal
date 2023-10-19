@@ -1,5 +1,5 @@
-const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('eda78c52fd7a4440984c6671328d2307');
+const NewsAPI = require('newsapi')
+const newsapi = new NewsAPI('eda78c52fd7a4440984c6671328d2307')
 
 function getTopHeadlines() {
     newsapi.v2.topHeadlines({
