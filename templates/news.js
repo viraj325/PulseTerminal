@@ -28,22 +28,26 @@ function getEverything() {
     })
 }
 
-function getSources() {
-    console.log('\n***************NEWS**************')
+const getSources = new Promise((resolve, reject) => {
     newsapi.v2.sources({
         category: 'technology',
         language: 'en',
         country: 'us',
         page: 1
     }).then(response => {
+        console.log('\n***************NEWS**************')
         // console.log(response.sources.description)
         let jsonArray = response.sources
-        for(let i = 0; i < jsonArray.length; i++) {
+        for(let i = 0; i < jsonArray.length - 1; i++) {
             console.log("\n" + i + ") " + jsonArray[i].description)
             console.log("______________________________________________________________________________________________" +
             "______________________________________________________________________________")
         }
+        resolve()
+    }).catch(() => {
+        console.log("Error: News Data not found.")
+        reject()
     })
-}
+})
 
 module.exports = getSources

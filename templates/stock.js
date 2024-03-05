@@ -9,9 +9,9 @@ async function getStockPriceFromYahooFinance() {
     return quote.price.currency
 }
 
-function getStockPrice(listOfSymbols, callback) {
-    console.log('\n***************STOCKS**************')
-    const quotePriceList = new Map()
+const getStockPrice = new Promise((resolve, reject) => {
+    const listOfSymbols = ["AAPL", "IBM", "META", "GOOG", "GOOGL"]
+    console.log('\n***************STOCKS**************\n')
     // TODO try string list
     /*
     {
@@ -32,14 +32,16 @@ function getStockPrice(listOfSymbols, callback) {
     for (const symbol of listOfSymbols) {
         let url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=QAJ6DWWS4KMBG9CQ"
         axios.get(url, {headers: {Accept: "application/json"}}).then(res => {
-            // console.log(chalk.dim(symbol + `: `) + chalk.bgGray(res.data["Global Quote"]["05. price"]))
-            // console.log(res.data["Global Quote"]["05. price"])
-            quotePriceList.set(symbol, res.data["Global Quote"]["05. price"])
+            console.log(chalk.dim(symbol + `: `) + chalk.bgGray(res.data["Global Quote"]["05. price"]))
+            console.log(res.data["Global Quote"]["05. price"])
+            // quotePriceList.set(symbol, "test")
+        }).catch(() => {
+            console.log("Error: Stock Data not found.")
+            reject()
         })
     }
-
-    callback(quotePriceList)
-}
+    resolve()
+})
 
 function saveListOfStocks(tickers) {
     let listOfSymbols = tickers.split(" ")
